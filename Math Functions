@@ -1,0 +1,68 @@
+//finds the first N prime numbers and returns them as an array arranged from least to greatest. Input must be a positive integer.
+function firstPrimes(n) {
+    let bankOfPrimes = [2,3];
+    let increment = 4;
+    for (let i = 5; bankOfPrimes.length < n; i+= increment) {
+        let stillPrime = true;
+        for (let j = 0; (bankOfPrimes[j] <= Math.sqrt(i)) && stillPrime; j++) {
+            if ((i % bankOfPrimes[j]) === 0) {
+                stillPrime = false;
+            }
+        }
+        if (stillPrime) {
+            bankOfPrimes.push(i);
+        }
+        if (increment === 2) {
+            increment = 4;
+        } else {
+            increment = 2;
+        }
+    }
+    return bankOfPrimes;
+}
+
+//finds all prime numbers less than or equal to the input. Input must be 5 or larger.
+function primesUpTo(n) {
+    let bankOfPrimes = [2,3];
+    let increment = 4;
+    for (let i = 5; i <= n; i+= increment) {
+        let stillPrime = true;
+        for (let j = 0; (bankOfPrimes[j] <= Math.sqrt(i)) && stillPrime; j++) {
+            if ((i % bankOfPrimes[j]) === 0) {
+                stillPrime = false;
+            }
+        }
+        if (stillPrime) {
+            bankOfPrimes.push(i);
+        }
+        if (increment === 2) {
+            increment = 4;
+        } else {
+            increment = 2;
+        }
+    }
+    return bankOfPrimes;
+}
+
+//returns an array containing the prime factors of the input in order from least to greatest with repeats as needed. Input must be a positive integer more than or equal to 5.
+function primeFactorization(n) {
+    let runningNum = n;
+    let factors = [1];
+    let primes = primesUpTo(Math.sqrt(n));
+    let index = 0;
+    while ((index < primes.length) && (runningNum > 1)) {
+        if (runningNum % primes[index] === 0) {
+            runningNum/= primes[index];
+            factors.push(primes[index]);
+        } else {
+            index++;
+        }
+    }
+    if (runningNum > 1) {
+        factors.push(runningNum);
+    } 
+    if (runningNum < n) {
+        factors.shift();
+    }
+    return factors;
+}
