@@ -66,3 +66,37 @@ function primeFactorization(n) {
     }
     return factors;
 }
+
+/*converts a number from any base 2-64, to any other base 2-64. The inputted number can be a string or a number. 
+'from' is the base from which you are converting, and likewise 'to' is the base to which you are converting. These can be strings or numbers. 
+Single digits representing numbers 0-63 follow 0-9, then A-Z, then a-z, then +, then /. 
+E.G. 'A' = 10 and '+' = 62.*/
+function numBaseConvert(num,from,to) {
+    let digits = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','+','/']
+    num = String(num);
+    from = Number(from);
+    to = Number(to);
+    let trueNum = 0;
+    let digitValueSet = 0;
+    if (num.indexOf('.') == -1) {
+        digitValueSet = from ** (num.length - 1);
+    } else {
+        digitValueSet = from ** (num.indexOf('.') - 1);
+    }
+    for (let i = 0; i < num.length; i++) {
+        if (num[i] != '.') {
+            trueNum += digits.indexOf(num[i]) * digitValueSet;
+            digitValueSet /= from;
+        }
+    }
+    let newNum = '';
+    let orderOfMagnitude = -1;
+    while (trueNum >= to ** (orderOfMagnitude + 1)) {
+        orderOfMagnitude++;
+    }
+    for (let i = orderOfMagnitude; trueNum > 0; i--) {
+        newNum += digits[Math.floor(trueNum / (to ** i))];
+        trueNum -= Math.floor(trueNum / (to ** i)) * (to ** i);
+    }
+    return newNum;
+}
