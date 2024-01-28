@@ -1,0 +1,60 @@
+body {
+    background-color: black;
+    font-family: "Copperplate", "Lucida Console", serif;
+    font-weight: bold;
+  }
+  
+  #game {
+    max-width: 750px;
+    background-color: black;
+    color: white;
+    padding: 30px;
+  }
+  
+  #monsterStats {
+    display: none;
+    border: 10px solid white;
+    padding: 30px;
+  }
+  
+  #text {
+    border: 10px solid white;
+    padding: 30px;
+  }
+  
+  #options {
+    border: 10px solid white;
+    padding: 15px;
+  }
+  
+  button {
+    padding: 8px;
+    margin-right: 40px;
+    margin-left: 40px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  #button3 {
+      display: none;
+  }
+  #button4 {
+      display: none;
+  }
+  #button5 {
+      display: none;
+  }
+  
+  #stats {
+    display: none;
+    border: 10px solid white;
+    padding: 20px;
+  }
+  
+  .stat {
+    padding: 30px;
+  }
+  
+  #tummy {
+    display: none;
+  }
